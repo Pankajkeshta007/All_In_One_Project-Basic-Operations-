@@ -1,16 +1,16 @@
-package AllInOneProgram;
+package Controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class MainClass {
-	static UserData[] users=null;
+import AllInOneProgram.EvenOddClass;
+import AllInOneProgram.UserData;
+public class Main {
 
 	public static void main(String[] args) throws IOException {
-		
-		
+	
+		UserData[] user=null;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\t\t\t\t----------------------------------------");
 		System.out.println("\t\t\t\t\tM A I N   M E N U");
@@ -29,13 +29,14 @@ public class MainClass {
 		
 		switch(choice) {
 		case 1:
+			
 			System.out.println("\t\t\t\t----------------------------------------");
 			System.out.println("\t\t\t\t\tR E G I S T E R    M E N U ");
 			System.out.println("\t\t\t\t----------------------------------------");
 			System.out.println("ENTER NUMBER OF USERS TO REGISTER ");
 			String n1=reader.readLine();
 			int n= Integer.parseInt(n1);
-			users=new UserData[n];
+			user=new UserData[n];
 			for(int i =0; i<n; i++)
 			{
 				System.out.println("ENTER USER EMAIL ID :");
@@ -44,15 +45,13 @@ public class MainClass {
 				String passwd=reader.readLine();
 				int password=Integer.parseInt(passwd);
 				UserData userdata = new UserData(emailid, password);
-				users[i]=userdata;
+				user[i]=userdata;
 				
 			}
 			System.out.println("YOU HAVE SUCCESSFULLY REGISTERED !");
-		
-			
-						break;
+			break;
 		case 2:
-			if(users==null) {
+			if(user==null) {
 				System.out.println("PLEASE REGISTER FIRST ");
 				continue;
 			}
@@ -65,7 +64,7 @@ public class MainClass {
 		    String pass=reader.readLine();
 		    int passwd = Integer.parseInt(pass);
 		    boolean result = false;
-		   for( UserData userdata :users) {
+		   for( UserData userdata :user) {
 			   if(userdata.getEmailId().equals(email) && userdata.getPassword() == passwd) {
 				   result=true;
 				   
@@ -75,20 +74,54 @@ public class MainClass {
 		    }
 			   if(result) {
 				    System.out.println("\t\tY O U  H A V E  L O G I N   S U C C E S S F U L L Y !");
-				    System.out.println("\n\n\n\n\n\n\t\t\tENTER Y TO SHOW OPERATION WINDOW AND N FOR EXIT");
-				    String y=reader.readLine();
-				    if(y.equalsIgnoreCase("Y"))
-				    {
-				    	 OperationWindow.operationWindowChoices();
+				    
+				    System.out.println("\t\t\t\t---------------------------------------");
+				    System.out.println("\t\t\t\t\tOPERATION WINDOW");
+				    System.out.println("\t\t\t\t---------------------------------------");
+				    System.out.println("1.TO PRINT EVEN/ODD NUMBERS. \n2.TO PRINT PRIME NUMBERS. \n3.TO PRINT ARTMSTRONG NUMBER. \n4.TO PRINT PALINDROMS NUMBERS. \n5. TO PRINT FACTORIAL OF NUMBER.");
+				    System.out.println("ENTER YOUR CHOICE :");
+				    String ch1=reader.readLine();
+				    int ch=Integer.parseInt(ch1);
+				    switch(ch) {
+				    
+				    case 1:
+				    	 System.out.println("\t\t\t\t---------------------------------------");
+						    System.out.println("\t\t\t\t\tE V E N   O D D   O P E R A T I O N");
+						    System.out.println("\t\t\t\t---------------------------------------");
 				    	
-				    }
-				    String no=reader.readLine();
-				    if(no.equalsIgnoreCase("N"))
-				    {
+				    	EvenOddClass.evenOdd();
 				    	break;
+				    case 2:
+				    	 System.out.println("\t\t\t\t---------------------------------------");
+						    System.out.println("\t\t\t\t\tP R I M E   N U M B E R   O P E R A T I O N ");
+						    System.out.println("\t\t\t\t---------------------------------------");
+				    	 break;
+				    	
+				    case 3:
+				    	 System.out.println("\t\t\t\t---------------------------------------");
+						    System.out.println("\t\t\t\t\tA R M S T R O N G   N U M B E R   O  P E R A T I O N ");
+						    System.out.println("\t\t\t\t---------------------------------------");
+						    break;
+				    case 4:
+				    	 System.out.println("\t\t\t\t---------------------------------------");
+						    System.out.println("\t\t\t\t\tP A L I N D R O M   N U M B E R   O P E R A T I O N ");
+						    System.out.println("\t\t\t\t---------------------------------------");
+						    break;
+				    case 5:
+				    	 System.out.println("\t\t\t\t---------------------------------------");
+						    System.out.println("\t\t\t\t\tF A C T O R I A L  O F   N U M B E R   O P E R A T I O N");
+						    System.out.println("\t\t\t\t---------------------------------------");
+				    	break;
+				    	default :
+				    		System.out.println("PLEASE ENTER A VALID CHOICE ");
 				    }
+				    
+				    
+				    
+				    
+				    
+				   
 			   }
-			
 			   else
 			   {
 				   System.out.println("USER LOGIN FAILED");
@@ -111,5 +144,7 @@ public class MainClass {
 		System.out.println("\t\t\t\t____________________________");
 		
 
-}
+
+	}
+
 }
